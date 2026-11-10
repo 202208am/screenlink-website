@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ScreenLink — simple screen sharing with owner approval.">
+  <title>ScreenLink — Secure Screen Sharing</title>
+  <style>
+    :root {
+      --bg: #090f20;
+      --panel: #151e34;
+      --border: #2a3855;
+      --text: #f3f6ff;
+      --muted: #a6b5d3;
+      --accent: #7485ff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: auto; padding: 0 24px; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: #0c1427;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 16px;
+    }
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: -.8px; }
+    .logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .language {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: white;
+      border-radius: 10px;
+      padding: 9px;
+      cursor: pointer;
+    }
+    .hero {
+      text-align: center;
+      padding: 105px 0 90px;
+    }
+    .eyebrow {
+      color: #9cafff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      max-width: 850px;
+      margin: 20px auto;
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 20px auto 32px;
+      font-size: 19px;
+    }
+    .button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      border-radius: 12px;
+      padding: 15px 28px;
+      font-weight: 700;
+      transition: .2s;
+    }
+    .button:hover { background: #91a0ff; transform: translateY(-2px); }
+    .button.secondary {
+      background: var(--panel);
+      border: 1px solid var(--border);
+    }
+    .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .note { color: var(--muted); font-size: 13px; margin-top: 20px; }
+    section { padding: 55px 0; }
+    h2 { font-size: 34px; letter-spacing: -1px; margin-bottom: 10px; }
+    .section-desc { color: var(--muted); margin-bottom: 28px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 18px;
+    }
+    .number {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #283766;
+      color: #bdc8ff;
+      font-weight: 800;
+    }
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .download {
+      background: linear-gradient(135deg, #192646, #131c34);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 30px;
+      text-align: center;
+    }
+    .download p { color: var(--muted); }
+    .download .button { margin-top: 16px; }
+    .warning { font-size: 13px; max-width: 650px; margin: 20px auto 0; }
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+    @media(max-width: 700px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0; }
+      .nav-right { gap: 8px; }
+      .download { padding: 30px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">Screen<span>Link</span></a>
+        <div class="nav-right">
+          <a href="#how" data-en="How it works" data-ru="Как работает">How it works</a>
+          <select class="language" id="language" aria-label="Language">
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+          </select>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero">
+      <div class="eyebrow" data-en="SCREEN SHARING MADE SIMPLE" data-ru="ПРОСТАЯ ДЕМОНСТРАЦИЯ ЭКРАНА">
+        SCREEN SHARING MADE SIMPLE
+      </div>
+      <h1 data-en="Share your screen. Anywhere."
+          data-ru="Показывайте свой экран. Где угодно.">
+        Share your screen. Anywhere.
+      </h1>
+      <p data-en="ScreenLink lets you share your screen with a six-digit code and your explicit approval. View-only, with no remote control."
+         data-ru="ScreenLink позволяет показывать экран по шестизначному коду с вашим подтверждением. Только просмотр, без удалённого управления.">
+        ScreenLink lets you share your screen with a six-digit code and your explicit approval. View-only, with no remote control.
+      </p>
+      <div class="buttons">
+        <a class="button" href="#download" data-en="Download for Windows" data-ru="Скачать для Windows">Download for Windows</a>
+        <a class="button secondary" href="#how" data-en="How it works" data-ru="Как пользоваться">How it works</a>
+      </div>
+      <div class="note" data-en="Windows 64-bit • ScreenLink v4"
+           data-ru="Windows 64-bit • ScreenLink v4">
+        Windows 64-bit • ScreenLink v4
+      </div>
+    </div>
+
+    <section id="how">
+      <div class="container">
+        <h2 data-en="How it works" data-ru="Как это работает">How it works</h2>
+        <p class="section-desc" data-en="Three simple steps to share your screen."
+           data-ru="Три простых шага для демонстрации экрана.">
+          Three simple steps to share your screen.
+        </p>
+        <div class="cards">
+          <div class="card">
+            <div class="number">01</div>
+            <h3 data-en="Start sharing" data-ru="Начните трансляцию">Start sharing</h3>
+            <p data-en="Open ScreenLink, select your screen and receive a six-digit code."
+               data-ru="Откройте ScreenLink, выберите экран и получите шестизначный код.">
+              Open ScreenLink, select your screen and receive a six-digit code.
+            </p>
+          </div>
+          <div class="card">
+            <div class="number">02</div>
+            <h3 data-en="Enter the code" data-ru="Введите код">Enter the code</h3>
+            <p data-en="The viewer opens ScreenLink and enters the code."
+               data-ru="Зритель открывает ScreenLink и вводит код.">
+              The viewer opens ScreenLink and enters the code.
+            </p>
+          </div>
+          <div class="card">
+            <div class="number">03</div>
+            <h3 data-en="Approve access" data-ru="Подтвердите доступ">Approve access</h3>
+            <p data-en="The screen owner approves the request before viewing can begin."
+               data-ru="Владелец экрана подтверждает запрос перед началом просмотра.">
+              The screen owner approves the request before viewing can begin.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="container">
+        <div class="download">
+          <h2 data-en="Get ScreenLink" data-ru="Скачать ScreenLink">Get ScreenLink</h2>
+          <p data-en="ScreenLink v4 for Windows 64-bit."
+             data-ru="ScreenLink v4 для Windows 64-bit.">
+            ScreenLink v4 for Windows 64-bit.
+          </p>
+          <a class="button" id="downloadButton"
+             href="https://github.com/202208am/screenlink-website/releases"
+             data-en="View available downloads"
+             data-ru="Посмотреть доступные загрузки">
+            View available downloads
+          </a>
+          <p class="warning"
+             data-en="Early test version. Cross-network reliability is still being tested. The installer is not digitally signed, so Windows may show a security warning."
+             data-ru="Ранняя тестовая версия. Подключение между разными сетями ещё проверяется. Установщик не имеет цифровой подписи, поэтому Windows может показать предупреждение безопасности.">
+            Early test version. Cross-network reliability is still being tested. The installer is not digitally signed, so Windows may show a security warning.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span data-en="© 2026 ScreenLink. Screen sharing with owner approval."
+            data-ru="© 2026 ScreenLink. Демонстрация экрана с разрешения владельца.">
+        © 2026 ScreenLink. Screen sharing with owner approval.
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const language = document.getElementById('language');
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en][data-ru]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+    }
+
+    language.addEventListener('change', () => {
+      setLanguage(language.value);
+    });
+
+    setLanguage('en');
+  </script>
+</body>
+</html>
