@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ScreenLink — simple screen sharing with owner approval.">
-  <title>ScreenLink — Secure Screen Sharing</title>
+  <meta name="description" content="ScreenLink — screen sharing and remote access with owner approval.">
+  <meta name="theme-color" content="#080d1b">
+  <title>ScreenLink — Connect Beyond Distance</title>
+
   <style>
     :root {
-      --bg: #090f20;
-      --panel: #151e34;
-      --border: #2a3855;
-      --text: #f3f6ff;
-      --muted: #a6b5d3;
-      --accent: #7485ff;
+      --bg: #080d1b;
+      --surface: #111a2e;
+      --surface2: #17223a;
+      --border: #293651;
+      --text: #f5f7ff;
+      --muted: #a4b2cc;
+      --primary: #7286ff;
+      --cyan: #55d6ed;
     }
+
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, "Segoe UI", Arial, sans-serif;
@@ -24,128 +31,433 @@
       color: var(--text);
       line-height: 1.6;
     }
+
     a { color: inherit; text-decoration: none; }
-    .container { max-width: 1120px; margin: auto; padding: 0 24px; }
-    header {
-      border-bottom: 1px solid var(--border);
-      background: #0c1427;
+
+    button, select { font: inherit; }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 24px;
     }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8,13,27,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
     nav {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 76px;
-      gap: 16px;
+      gap: 20px;
     }
-    .logo { font-size: 24px; font-weight: 800; letter-spacing: -.8px; }
-    .logo span { color: var(--accent); }
-    .nav-right { display: flex; align-items: center; gap: 18px; }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#7286ff,#42d5eb);
+      color: #fff;
+      font-size: 23px;
+    }
+
+    .logo span:last-child { color: #8fa0ff; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-right a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-right a:hover { color: white; }
+
     .language {
-      background: var(--panel);
+      background: var(--surface);
       border: 1px solid var(--border);
       color: white;
       border-radius: 10px;
-      padding: 9px;
+      padding: 9px 12px;
       cursor: pointer;
     }
+
     .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 112px 0 95px;
       text-align: center;
-      padding: 105px 0 90px;
+      background:
+        radial-gradient(ellipse at 50% 5%,rgba(94,91,255,.23),transparent 55%),
+        radial-gradient(ellipse at 85% 65%,rgba(25,177,214,.10),transparent 45%);
     }
+
     .eyebrow {
-      color: #9cafff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid #38447d;
+      border-radius: 30px;
+      background: rgba(114,134,255,.1);
+      color: #b7c1ff;
       font-size: 12px;
       font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
     }
+
     h1 {
-      font-size: clamp(40px, 6vw, 76px);
-      line-height: 1.1;
-      letter-spacing: -2px;
-      max-width: 850px;
-      margin: 20px auto;
+      font-size: clamp(43px,6vw,78px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      max-width: 900px;
+      margin: 26px auto;
     }
-    .hero p {
+
+    .gradient-text {
+      background: linear-gradient(90deg,#a7b2ff,#5ed9ed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 690px;
+      margin: 0 auto 35px;
       color: var(--muted);
-      max-width: 640px;
-      margin: 20px auto 32px;
       font-size: 19px;
     }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
     .button {
-      display: inline-block;
-      background: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 14px 26px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      background: var(--primary);
       color: white;
-      border-radius: 12px;
-      padding: 15px 28px;
+      font-size: 15px;
       font-weight: 700;
       transition: .2s;
+      cursor: pointer;
     }
-    .button:hover { background: #91a0ff; transform: translateY(-2px); }
+
+    .button:hover {
+      background: #8d9cff;
+      transform: translateY(-2px);
+    }
+
     .button.secondary {
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: var(--surface2);
+      border-color: var(--border);
     }
-    .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .note { color: var(--muted); font-size: 13px; margin-top: 20px; }
-    section { padding: 55px 0; }
-    h2 { font-size: 34px; letter-spacing: -1px; margin-bottom: 10px; }
-    .section-desc { color: var(--muted); margin-bottom: 28px; }
+
+    .button.secondary:hover {
+      background: #25334f;
+    }
+
+    .button.disabled {
+      background: #1b2740;
+      border-color: #35415a;
+      color: #a5b0c8;
+      cursor: not-allowed;
+    }
+
+    .button.disabled:hover { transform: none; }
+
+    .note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .preview {
+      max-width: 870px;
+      margin: 70px auto 0;
+      padding: 1px;
+      border-radius: 22px;
+      background: linear-gradient(135deg,#7186ff,#25334f,#55d6ed);
+      box-shadow: 0 35px 100px rgba(0,0,0,.4);
+      text-align: left;
+    }
+
+    .preview-inner {
+      overflow: hidden;
+      border-radius: 21px;
+      background: #111a2d;
+    }
+
+    .preview-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 15px 20px;
+      background: #1a263e;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff7777;
+    }
+
+    .dot:nth-child(2) { background: #ffc46a; }
+    .dot:nth-child(3) { background: #65d49c; }
+
+    .preview-title {
+      flex: 1;
+      text-align: center;
+      color: #a9b9d7;
+      font-size: 12px;
+    }
+
+    .preview-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      padding: 30px;
+    }
+
+    .preview-panel {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #17233a;
+    }
+
+    .preview-panel h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+    }
+
+    .preview-panel p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .demo-code {
+      padding: 15px;
+      border: 1px dashed #556b9e;
+      border-radius: 12px;
+      text-align: center;
+      color: #d4dcff;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 8px;
+    }
+
+    .demo-input {
+      padding: 15px;
+      border: 1px solid #445371;
+      border-radius: 12px;
+      color: #8fa0bb;
+      font-size: 14px;
+    }
+
+    .demo-status {
+      margin-top: 15px;
+      color: #7edcba;
+      font-size: 12px;
+    }
+
+    section { padding: 85px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 42px;
+    }
+
+    h2 {
+      margin: 0 0 15px;
+      font-size: clamp(29px,4vw,43px);
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3,1fr);
       gap: 20px;
     }
+
     .card {
-      background: var(--panel);
+      padding: 30px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 28px;
-      border-radius: 18px;
+      border-radius: 20px;
+      transition: .2s;
     }
-    .number {
-      display: inline-grid;
+
+    .card:hover {
+      border-color: #5367a5;
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      display: grid;
       place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: #283766;
-      color: #bdc8ff;
+      width: 51px;
+      height: 51px;
+      border-radius: 14px;
+      background: #25355d;
+      font-size: 25px;
+    }
+
+    .card h3 { margin: 23px 0 9px; }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .step {
+      position: relative;
+      padding: 27px;
+      border-radius: 18px;
+      background: #101a2d;
+      border: 1px solid var(--border);
+    }
+
+    .step-number {
+      color: #91a1ff;
+      font-size: 32px;
       font-weight: 800;
     }
-    .card h3 { margin-bottom: 8px; }
-    .card p { color: var(--muted); margin-bottom: 0; }
-    .download {
-      background: linear-gradient(135deg, #192646, #131c34);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 48px 30px;
-      text-align: center;
+
+    .step h3 { margin: 15px 0 8px; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .download-section {
+      padding: 90px 0 110px;
     }
-    .download p { color: var(--muted); }
-    .download .button { margin-top: 16px; }
-    .warning { font-size: 13px; max-width: 650px; margin: 20px auto 0; }
+
+    .download-box {
+      padding: 55px 30px;
+      text-align: center;
+      border-radius: 28px;
+      border: 1px solid #3b4c7a;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(114,134,255,.20),transparent 65%),
+        linear-gradient(135deg,#192746,#101a30);
+    }
+
+    .download-box p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 28px;
+    }
+
+    .download-warning {
+      max-width: 680px;
+      margin: 28px auto 0;
+      color: #aab8d3;
+      font-size: 13px;
+    }
+
     footer {
       padding: 30px 0;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      text-align: center;
-      font-size: 14px;
+      font-size: 13px;
     }
-    @media(max-width: 700px) {
-      .cards { grid-template-columns: 1fr; }
-      .hero { padding: 70px 0; }
-      .nav-right { gap: 8px; }
-      .download { padding: 30px 18px; }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .cards, .steps { grid-template-columns: 1fr; }
+      .preview-body { grid-template-columns: 1fr; }
+      .hero { padding: 80px 0 65px; }
+      .nav-right { gap: 12px; }
+      .nav-right a { display: none; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 17px; }
+      h1 { letter-spacing: -1.5px; }
+      .buttons { flex-direction: column; }
+      .button { width: 100%; }
+      .preview-body { padding: 15px; }
+      .preview-panel { padding: 20px; }
+      .download-box { padding: 35px 18px; }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container">
       <nav>
-        <a class="logo" href="#">Screen<span>Link</span></a>
+        <a class="logo" href="#top" aria-label="ScreenLink">
+          <span class="logo-mark">S</span>
+          <span>Screen<span>Link</span></span>
+        </a>
+
         <div class="nav-right">
-          <a href="#how" data-en="How it works" data-ru="Как работает">How it works</a>
+          <a href="#features"
+             data-en="Features"
+             data-ru="Возможности">Features</a>
+
+          <a href="#how"
+             data-en="How it works"
+             data-ru="Как работает">How it works</a>
+
+          <a href="#download"
+             data-en="Download"
+             data-ru="Скачать">Download</a>
+
           <select class="language" id="language" aria-label="Language">
             <option value="en">EN</option>
             <option value="ru">RU</option>
@@ -155,94 +467,273 @@
     </div>
   </header>
 
-  <main>
-    <div class="container hero">
-      <div class="eyebrow" data-en="SCREEN SHARING MADE SIMPLE" data-ru="ПРОСТАЯ ДЕМОНСТРАЦИЯ ЭКРАНА">
-        SCREEN SHARING MADE SIMPLE
-      </div>
-      <h1 data-en="Share your screen. Anywhere."
-          data-ru="Показывайте свой экран. Где угодно.">
-        Share your screen. Anywhere.
-      </h1>
-      <p data-en="ScreenLink lets you share your screen using a six-digit code and owner approval. Remote keyboard control is available as an experimental feature and requires separate permission."
-         data-ru="ScreenLink позволяет передавать экран по шестизначному коду с разрешения владельца. Удалённое управление клавиатурой доступно в тестовом режиме и требует отдельного разрешения.">
-        ScreenLink lets you share your screen using a six-digit code and owner approval. Remote keyboard control is available as an experimental feature and requires separate permission.
-      </p>
-      <div class="buttons">
-        <a class="button" href="https://github.com/202208am/screenlink-desktop/releases/download/v4.0.0/ScreenLink.Setup.4.0.0.exe" data-en="Download for Windows" data-ru="Скачать для Windows">Download for Windows</a>
-        <a class="button secondary" href="#how" data-en="How it works" data-ru="Как пользоваться">How it works</a>
-      </div>
-      <div class="note" data-en="Windows 64-bit • ScreenLink v4"
-           data-ru="Windows 64-bit • ScreenLink v4">
-        Windows 64-bit • ScreenLink v4
+  <main id="top">
+    <div class="hero">
+      <div class="container">
+        <div class="eyebrow"
+             data-en="REMOTE CONNECTION, SIMPLIFIED"
+             data-ru="УДАЛЁННОЕ ПОДКЛЮЧЕНИЕ БЕЗ СЛОЖНОСТЕЙ">
+          REMOTE CONNECTION, SIMPLIFIED
+        </div>
+
+        <h1>
+          <span data-en="Connect beyond"
+                data-ru="Подключайтесь без">Connect beyond</span>
+          <br>
+          <span class="gradient-text"
+                data-en="distance."
+                data-ru="границ.">distance.</span>
+        </h1>
+
+        <p class="hero-description"
+           data-en="Share your screen and collaborate remotely with ScreenLink. Connect using a six-digit code, with approval from the screen owner."
+           data-ru="Делитесь экраном и работайте удалённо через ScreenLink. Подключайтесь по шестизначному коду с разрешения владельца компьютера.">
+          Share your screen and collaborate remotely with ScreenLink.
+          Connect using a six-digit code, with approval from the screen owner.
+        </p>
+
+        <div class="buttons">
+          <a class="button"
+             href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.3/screenlink-v4.Setup.4.0.0.exe"
+             data-en="↓ Download for Windows"
+             data-ru="↓ Скачать для Windows">
+            ↓ Download for Windows
+          </a>
+
+          <button class="button disabled"
+                  type="button"
+                  disabled
+                  data-en="macOS — Coming soon"
+                  data-ru="macOS — Скоро">
+            macOS — Coming soon
+          </button>
+        </div>
+
+        <div class="note"
+             data-en="Windows 10/11 (64-bit) • Early access • macOS in development"
+             data-ru="Windows 10/11 (64-bit) • Тестовая версия • macOS в разработке">
+          Windows 10/11 (64-bit) • Early access • macOS in development
+        </div>
+
+        <div class="preview" aria-label="Illustration of ScreenLink connection workflow">
+          <div class="preview-inner">
+            <div class="preview-bar">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="preview-title">ScreenLink — Desktop</span>
+            </div>
+
+            <div class="preview-body">
+              <div class="preview-panel">
+                <h3 data-en="Share your screen"
+                    data-ru="Поделиться экраном">
+                  Share your screen
+                </h3>
+                <p data-en="Your connection code"
+                   data-ru="Ваш код подключения">
+                  Your connection code
+                </p>
+                <div class="demo-code">••••••</div>
+                <div class="demo-status"
+                     data-en="● Waiting for connection"
+                     data-ru="● Ожидание подключения">
+                  ● Waiting for connection
+                </div>
+              </div>
+
+              <div class="preview-panel">
+                <h3 data-en="Connect to a device"
+                    data-ru="Подключиться к устройству">
+                  Connect to a device
+                </h3>
+                <p data-en="Enter the code shared by the owner"
+                   data-ru="Введите код, полученный от владельца">
+                  Enter the code shared by the owner
+                </p>
+                <div class="demo-input"
+                     data-en="Enter six-digit code"
+                     data-ru="Введите шестизначный код">
+                  Enter six-digit code
+                </div>
+                <div class="demo-status"
+                     data-en="● Owner approval required"
+                     data-ru="● Требуется разрешение владельца">
+                  ● Owner approval required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <section id="how">
+    <section id="features">
       <div class="container">
-        <h2 data-en="How it works" data-ru="Как это работает">How it works</h2>
-        <p class="section-desc" data-en="Three simple steps to share your screen."
-           data-ru="Три простых шага для демонстрации экрана.">
-          Three simple steps to share your screen.
-        </p>
+        <div class="section-heading">
+          <h2 data-en="Everything you need to stay connected"
+              data-ru="Всё необходимое для удалённой работы">
+            Everything you need to stay connected
+          </h2>
+          <p class="section-desc"
+             data-en="Simple tools for sharing your screen and working together from different locations."
+             data-ru="Простые инструменты для демонстрации экрана и совместной работы из разных мест.">
+            Simple tools for sharing your screen and working together from different locations.
+          </p>
+        </div>
+
         <div class="cards">
           <div class="card">
-            <div class="number">01</div>
-            <h3 data-en="Start sharing" data-ru="Начните трансляцию">Start sharing</h3>
-            <p data-en="Open ScreenLink, select your screen and receive a six-digit code."
-               data-ru="Откройте ScreenLink, выберите экран и получите шестизначный код.">
-              Open ScreenLink, select your screen and receive a six-digit code.
+            <div class="card-icon">▣</div>
+            <h3 data-en="Screen sharing"
+                data-ru="Демонстрация экрана">
+              Screen sharing
+            </h3>
+            <p data-en="Let another person view your screen after you approve their connection request."
+               data-ru="Разрешайте другому человеку просматривать ваш экран после подтверждения запроса.">
+              Let another person view your screen after you approve their connection request.
             </p>
           </div>
+
           <div class="card">
-            <div class="number">02</div>
-            <h3 data-en="Enter the code" data-ru="Введите код">Enter the code</h3>
-            <p data-en="The viewer opens ScreenLink and enters the code."
-               data-ru="Зритель открывает ScreenLink и вводит код.">
-              The viewer opens ScreenLink and enters the code.
+            <div class="card-icon">⌨</div>
+            <h3 data-en="Remote control"
+                data-ru="Удалённое управление">
+              Remote control
+            </h3>
+            <p data-en="Experimental mouse and keyboard control with separate permission from the computer owner."
+               data-ru="Тестовое управление мышью и клавиатурой с отдельного разрешения владельца компьютера.">
+              Experimental mouse and keyboard control with separate permission from the computer owner.
             </p>
           </div>
+
           <div class="card">
-            <div class="number">03</div>
-            <h3 data-en="Approve access" data-ru="Подтвердите доступ">Approve access</h3>
-            <p data-en="The screen owner approves the request before viewing can begin."
-               data-ru="Владелец экрана подтверждает запрос перед началом просмотра.">
-              The screen owner approves the request before viewing can begin.
+            <div class="card-icon">◎</div>
+            <h3 data-en="Audio streaming"
+                data-ru="Передача звука">
+              Audio streaming
+            </h3>
+            <p data-en="Audio streaming is under development and testing. Availability may vary by device."
+               data-ru="Передача звука находится в разработке и тестировании. Доступность зависит от устройства.">
+              Audio streaming is under development and testing. Availability may vary by device.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="download">
+    <section id="how">
       <div class="container">
-        <div class="download">
-          <h2 data-en="Get ScreenLink" data-ru="Скачать ScreenLink">Get ScreenLink</h2>
-          <p data-en="ScreenLink v4 for Windows 64-bit."
-             data-ru="ScreenLink v4 для Windows 64-bit.">
-            ScreenLink v4 for Windows 64-bit.
+        <div class="section-heading">
+          <h2 data-en="Connect in three simple steps"
+              data-ru="Подключение за три простых шага">
+            Connect in three simple steps
+          </h2>
+          <p class="section-desc"
+             data-en="No complicated setup. Both computers need ScreenLink installed."
+             data-ru="Без сложной настройки. ScreenLink должен быть установлен на обоих компьютерах.">
+            No complicated setup. Both computers need ScreenLink installed.
           </p>
-          <a class="button" id="downloadButton"
-             href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.3/screenlink-v4.Setup.4.0.0.exe"
-             data-en="Download for Windows"
-             data-ru="Скачать для Windows">
-               Download for Windows
-          </a>
-          <p class="warning"
-             data-en="Early test version. Cross-network reliability is still being tested. The installer is not digitally signed, so Windows may show a security warning."
-             data-ru="Ранняя тестовая версия. Подключение между разными сетями ещё проверяется. Установщик не имеет цифровой подписи, поэтому Windows может показать предупреждение безопасности.">
-            Early test version. Cross-network reliability is still being tested. The installer is not digitally signed, so Windows may show a security warning.
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <h3 data-en="Open ScreenLink"
+                data-ru="Откройте ScreenLink">
+              Open ScreenLink
+            </h3>
+            <p data-en="Launch the application on both computers. The screen owner starts a sharing session."
+               data-ru="Запустите приложение на обоих компьютерах. Владелец экрана начинает трансляцию.">
+              Launch the application on both computers. The screen owner starts a sharing session.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">02</div>
+            <h3 data-en="Enter the code"
+                data-ru="Введите код">
+              Enter the code
+            </h3>
+            <p data-en="The viewer enters the six-digit connection code provided by the owner."
+               data-ru="Зритель вводит шестизначный код подключения, полученный от владельца.">
+              The viewer enters the six-digit connection code provided by the owner.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">03</div>
+            <h3 data-en="Approve the request"
+                data-ru="Подтвердите запрос">
+              Approve the request
+            </h3>
+            <p data-en="The owner approves screen viewing. Remote control requires additional permission."
+               data-ru="Владелец разрешает просмотр экрана. Для удалённого управления требуется дополнительное разрешение.">
+              The owner approves screen viewing. Remote control requires additional permission.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="download-section">
+      <div class="container">
+        <div class="download-box">
+          <div class="eyebrow"
+               data-en="GET STARTED"
+               data-ru="НАЧНИТЕ РАБОТУ">
+            GET STARTED
+          </div>
+
+          <h2 style="margin-top:20px"
+              data-en="Download ScreenLink"
+              data-ru="Скачать ScreenLink">
+            Download ScreenLink
+          </h2>
+
+          <p data-en="Get the current Windows test release. The macOS installer will be available after development and testing."
+             data-ru="Скачайте текущую тестовую версию для Windows. Установщик macOS появится после разработки и проверки.">
+            Get the current Windows test release. The macOS installer will be available after development and testing.
           </p>
+
+          <div class="buttons">
+            <a class="button"
+               href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.3/screenlink-v4.Setup.4.0.0.exe"
+               data-en="↓ Download for Windows"
+               data-ru="↓ Скачать для Windows">
+              ↓ Download for Windows
+            </a>
+
+            <button class="button disabled"
+                    type="button"
+                    disabled
+                    data-en="macOS — Coming soon"
+                    data-ru="macOS — Скоро">
+              macOS — Coming soon
+            </button>
+          </div>
+
+          <div class="download-warning"
+               data-en="Early test version. Connections across different networks are still being tested. The Windows installer is not digitally signed and may trigger a security warning."
+               data-ru="Ранняя тестовая версия. Подключения между разными сетями ещё проверяются. Установщик Windows не имеет цифровой подписи, поэтому система может показать предупреждение безопасности.">
+            Early test version. Connections across different networks are still being tested.
+            The Windows installer is not digitally signed and may trigger a security warning.
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <span data-en="© 2026 ScreenLink. Screen sharing with owner approval."
-            data-ru="© 2026 ScreenLink. Демонстрация экрана с разрешения владельца.">
-        © 2026 ScreenLink. Screen sharing with owner approval.
+    <div class="container footer-content">
+      <span data-en="© 2026 ScreenLink. All rights reserved."
+            data-ru="© 2026 ScreenLink. Все права защищены.">
+        © 2026 ScreenLink. All rights reserved.
+      </span>
+
+      <span data-en="Remote access with owner approval."
+            data-ru="Удалённый доступ с разрешения владельца.">
+        Remote access with owner approval.
       </span>
     </div>
   </footer>
@@ -252,8 +743,9 @@
 
     function setLanguage(lang) {
       document.documentElement.lang = lang;
-      document.querySelectorAll('[data-en][data-ru]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
+
+      document.querySelectorAll('[data-en][data-ru]').forEach(element => {
+        element.textContent = element.getAttribute('data-' + lang);
       });
     }
 
