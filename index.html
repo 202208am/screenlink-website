@@ -21,7 +21,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -33,7 +32,6 @@
     }
 
     a { color: inherit; text-decoration: none; }
-
     button, select { font: inherit; }
 
     .container {
@@ -183,18 +181,7 @@
       border-color: var(--border);
     }
 
-    .button.secondary:hover {
-      background: #25334f;
-    }
-
-    .button.disabled {
-      background: #1b2740;
-      border-color: #35415a;
-      color: #a5b0c8;
-      cursor: not-allowed;
-    }
-
-    .button.disabled:hover { transform: none; }
+    .button.secondary:hover { background: #25334f; }
 
     .note {
       margin-top: 22px;
@@ -374,9 +361,7 @@
     .step h3 { margin: 15px 0 8px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .download-section {
-      padding: 90px 0 110px;
-    }
+    .download-section { padding: 90px 0 110px; }
 
     .download-box {
       padding: 55px 30px;
@@ -446,17 +431,9 @@
         </a>
 
         <div class="nav-right">
-          <a href="#features"
-             data-en="Features"
-             data-ru="Возможности">Features</a>
-
-          <a href="#how"
-             data-en="How it works"
-             data-ru="Как работает">How it works</a>
-
-          <a href="#download"
-             data-en="Download"
-             data-ru="Скачать">Download</a>
+          <a href="#features" data-en="Features" data-ru="Возможности">Features</a>
+          <a href="#how" data-en="How it works" data-ru="Как работает">How it works</a>
+          <a href="#download" data-en="Download" data-ru="Скачать">Download</a>
 
           <select class="language" id="language" aria-label="Language">
             <option value="en">EN</option>
@@ -477,12 +454,9 @@
         </div>
 
         <h1>
-          <span data-en="Connect beyond"
-                data-ru="Подключайтесь без">Connect beyond</span>
+          <span data-en="Connect beyond" data-ru="Подключайтесь без">Connect beyond</span>
           <br>
-          <span class="gradient-text"
-                data-en="distance."
-                data-ru="границ.">distance.</span>
+          <span class="gradient-text" data-en="distance." data-ru="границ.">distance.</span>
         </h1>
 
         <p class="hero-description"
@@ -496,31 +470,23 @@
           <a class="button"
              href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.1-windows/ScreenLink.Setup.4.0.0.exe"
              data-en="↓ Download for Windows"
-             data-ru="↓ Скачать для Windows">
-            ↓ Download for Windows
-          </a>
+             data-ru="↓ Скачать для Windows">↓ Download for Windows</a>
 
-          
-<a class="button"
-   href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.0-mac/ScreenLink-4.0.0-arm64.dmg"
-   data-en="↓ Download for Mac (M1–M4)"
-   data-ru="↓ Скачать для Mac (M1–M4)">
-  ↓ Download for Mac (M1–M4)
-</a>
+          <a class="button secondary"
+             href="https://github.com/202208am/screenlink-downloads/releases/tag/v4.0.0-mac"
+             data-en="Mac (Apple Silicon) — Test build"
+             data-ru="Mac (Apple Silicon) — тестовая сборка">Mac (Apple Silicon) — Test build</a>
 
-<a class="button"
-   href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.0-mac/ScreenLink-4.0.0.dmg"
-   data-en="↓ Download for Mac (Intel)"
-   data-ru="↓ Скачать для Mac (Intel)">
-  ↓ Download for Mac (Intel)
-</a>
-
+          <a class="button secondary"
+             href="https://github.com/202208am/screenlink-downloads/releases/tag/v4.0.0-mac"
+             data-en="Mac (Intel) — Test build"
+             data-ru="Mac (Intel) — тестовая сборка">Mac (Intel) — Test build</a>
         </div>
 
         <div class="note"
-             data-en="Windows 10/11 (64-bit) • Early access • macOS in development"
-             data-ru="Windows 10/11 (64-bit) • Тестовая версия • macOS в разработке">
-          Windows 10/11 (64-bit) • Early access • macOS in development
+             data-en="Windows 10/11: tested • macOS: not yet verified • Version 4.1.0 in preparation"
+             data-ru="Windows 10/11: проверено • macOS: ещё не проверено • Версия 4.1.0 готовится">
+          Windows 10/11: tested • macOS: not yet verified • Version 4.1.0 in preparation
         </div>
 
         <div class="preview" aria-label="Illustration of ScreenLink connection workflow">
@@ -534,14 +500,8 @@
 
             <div class="preview-body">
               <div class="preview-panel">
-                <h3 data-en="Share your screen"
-                    data-ru="Поделиться экраном">
-                  Share your screen
-                </h3>
-                <p data-en="Your connection code"
-                   data-ru="Ваш код подключения">
-                  Your connection code
-                </p>
+                <h3 data-en="Share your screen" data-ru="Поделиться экраном">Share your screen</h3>
+                <p data-en="Your connection code" data-ru="Ваш код подключения">Your connection code</p>
                 <div class="demo-code">••••••</div>
                 <div class="demo-status"
                      data-en="● Waiting for connection"
@@ -551,8 +511,7 @@
               </div>
 
               <div class="preview-panel">
-                <h3 data-en="Connect to a device"
-                    data-ru="Подключиться к устройству">
+                <h3 data-en="Connect to a device" data-ru="Подключиться к устройству">
                   Connect to a device
                 </h3>
                 <p data-en="Enter the code shared by the owner"
@@ -593,10 +552,7 @@
         <div class="cards">
           <div class="card">
             <div class="card-icon">▣</div>
-            <h3 data-en="Screen sharing"
-                data-ru="Демонстрация экрана">
-              Screen sharing
-            </h3>
+            <h3 data-en="Screen sharing" data-ru="Демонстрация экрана">Screen sharing</h3>
             <p data-en="Let another person view your screen after you approve their connection request."
                data-ru="Разрешайте другому человеку просматривать ваш экран после подтверждения запроса.">
               Let another person view your screen after you approve their connection request.
@@ -605,10 +561,7 @@
 
           <div class="card">
             <div class="card-icon">⌨</div>
-            <h3 data-en="Remote control"
-                data-ru="Удалённое управление">
-              Remote control
-            </h3>
+            <h3 data-en="Remote control" data-ru="Удалённое управление">Remote control</h3>
             <p data-en="Experimental mouse and keyboard control with separate permission from the computer owner."
                data-ru="Тестовое управление мышью и клавиатурой с отдельного разрешения владельца компьютера.">
               Experimental mouse and keyboard control with separate permission from the computer owner.
@@ -617,13 +570,10 @@
 
           <div class="card">
             <div class="card-icon">◎</div>
-            <h3 data-en="Audio streaming"
-                data-ru="Передача звука">
-              Audio streaming
-            </h3>
-            <p data-en="Audio streaming is under development and testing. Availability may vary by device."
-               data-ru="Передача звука находится в разработке и тестировании. Доступность зависит от устройства.">
-              Audio streaming is under development and testing. Availability may vary by device.
+            <h3 data-en="Audio streaming" data-ru="Передача звука">Audio streaming</h3>
+            <p data-en="Microphone and system audio controls are available in the latest Windows build; audio support varies by operating system."
+               data-ru="Управление микрофоном и системным звуком есть в новой сборке Windows; поддержка зависит от операционной системы.">
+              Microphone and system audio controls are available in the latest Windows build; audio support varies by operating system.
             </p>
           </div>
         </div>
@@ -647,10 +597,7 @@
         <div class="steps">
           <div class="step">
             <div class="step-number">01</div>
-            <h3 data-en="Open ScreenLink"
-                data-ru="Откройте ScreenLink">
-              Open ScreenLink
-            </h3>
+            <h3 data-en="Open ScreenLink" data-ru="Откройте ScreenLink">Open ScreenLink</h3>
             <p data-en="Launch the application on both computers. The screen owner starts a sharing session."
                data-ru="Запустите приложение на обоих компьютерах. Владелец экрана начинает трансляцию.">
               Launch the application on both computers. The screen owner starts a sharing session.
@@ -659,10 +606,7 @@
 
           <div class="step">
             <div class="step-number">02</div>
-            <h3 data-en="Enter the code"
-                data-ru="Введите код">
-              Enter the code
-            </h3>
+            <h3 data-en="Enter the code" data-ru="Введите код">Enter the code</h3>
             <p data-en="The viewer enters the six-digit connection code provided by the owner."
                data-ru="Зритель вводит шестизначный код подключения, полученный от владельца.">
               The viewer enters the six-digit connection code provided by the owner.
@@ -671,10 +615,7 @@
 
           <div class="step">
             <div class="step-number">03</div>
-            <h3 data-en="Approve the request"
-                data-ru="Подтвердите запрос">
-              Approve the request
-            </h3>
+            <h3 data-en="Approve the request" data-ru="Подтвердите запрос">Approve the request</h3>
             <p data-en="The owner approves screen viewing. Remote control requires additional permission."
                data-ru="Владелец разрешает просмотр экрана. Для удалённого управления требуется дополнительное разрешение.">
               The owner approves screen viewing. Remote control requires additional permission.
@@ -687,9 +628,7 @@
     <section id="download" class="download-section">
       <div class="container">
         <div class="download-box">
-          <div class="eyebrow"
-               data-en="GET STARTED"
-               data-ru="НАЧНИТЕ РАБОТУ">
+          <div class="eyebrow" data-en="GET STARTED" data-ru="НАЧНИТЕ РАБОТУ">
             GET STARTED
           </div>
 
@@ -699,33 +638,38 @@
             Download ScreenLink
           </h2>
 
-          <p data-en="Get the current Windows test release. The macOS installer will be available after development and testing."
-             data-ru="Скачайте текущую тестовую версию для Windows. Установщик macOS появится после разработки и проверки.">
-            Get the current Windows test release. The macOS installer will be available after development and testing.
+          <p data-en="Download the tested Windows installer. Mac builds are available for testing but have not yet been verified on a Mac. Version 4.1.0 will be published after installers are built and checked."
+             data-ru="Скачайте проверенный установщик Windows. Сборки для Mac доступны для тестирования, но пока не проверены на Mac. Версия 4.1.0 появится после сборки и проверки установщиков.">
+            Download the tested Windows installer. Mac builds are available for testing but have not yet been verified on a Mac. Version 4.1.0 will be published after installers are built and checked.
           </p>
 
           <div class="buttons">
             <a class="button"
-               href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.3/screenlink-v4.Setup.4.0.0.exe"
+               href="https://github.com/202208am/screenlink-downloads/releases/download/v4.0.1-windows/ScreenLink.Setup.4.0.0.exe"
                data-en="↓ Download for Windows"
                data-ru="↓ Скачать для Windows">
               ↓ Download for Windows
             </a>
 
-            <button class="button disabled"
-                    type="button"
-                    disabled
-                    data-en="macOS — Coming soon"
-                    data-ru="macOS — Скоро">
-              macOS — Coming soon
-            </button>
+            <a class="button secondary"
+               href="https://github.com/202208am/screenlink-downloads/releases/tag/v4.0.0-mac"
+               data-en="Mac Apple Silicon — Test build"
+               data-ru="Mac Apple Silicon — тестовая сборка">
+              Mac Apple Silicon — Test build
+            </a>
+
+            <a class="button secondary"
+               href="https://github.com/202208am/screenlink-downloads/releases/tag/v4.0.0-mac"
+               data-en="Mac Intel — Test build"
+               data-ru="Mac Intel — тестовая сборка">
+              Mac Intel — Test build
+            </a>
           </div>
 
           <div class="download-warning"
-               data-en="Early test version. Connections across different networks are still being tested. The Windows installer is not digitally signed and may trigger a security warning."
-               data-ru="Ранняя тестовая версия. Подключения между разными сетями ещё проверяются. Установщик Windows не имеет цифровой подписи, поэтому система может показать предупреждение безопасности.">
-            Early test version. Connections across different networks are still being tested.
-            The Windows installer is not digitally signed and may trigger a security warning.
+               data-en="Current Windows download: 4.0.0. macOS releases are unverified; choose the file matching your Mac processor. Unsigned installers may trigger operating-system security warnings. Never disable security protections just to install ScreenLink."
+               data-ru="Текущая загрузка Windows: 4.0.0. Сборки macOS не проверены; выбирайте файл для своего процессора Mac. Неподписанные установщики могут вызывать предупреждения безопасности. Не отключайте защиту системы ради установки ScreenLink.">
+            Current Windows download: 4.0.0. macOS releases are unverified; choose the file matching your Mac processor. Unsigned installers may trigger operating-system security warnings. Never disable security protections just to install ScreenLink.
           </div>
         </div>
       </div>
@@ -738,7 +682,6 @@
             data-ru="© 2026 ScreenLink. Все права защищены.">
         © 2026 ScreenLink. All rights reserved.
       </span>
-
       <span data-en="Remote access with owner approval."
             data-ru="Удалённый доступ с разрешения владельца.">
         Remote access with owner approval.
@@ -751,7 +694,6 @@
 
     function setLanguage(lang) {
       document.documentElement.lang = lang;
-
       document.querySelectorAll('[data-en][data-ru]').forEach(element => {
         element.textContent = element.getAttribute('data-' + lang);
       });
